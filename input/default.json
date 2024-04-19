@@ -1,0 +1,46 @@
+{
+	"rerun": "enable",
+	"save": "disable",
+	"count": "2",
+
+	"case": [
+		{
+			"name": "ec_fw_update",
+			"command": "sudo ite -f zephyr.bin",
+			"ec_console": {
+				"source": "device",
+				"location": "/dev/ttyUSB0",
+				"baudrate": 115200
+			},
+			"waiting_sec": 30,
+			"validation": "string-comparison"
+		},
+		{
+			"name": "ec_warm_reset",
+			"command": "ls",
+			"ec_console": {
+				"source": "file",
+				"location": "/home/ren/test.log"
+			},
+			"waiting_sec": 10,
+			"validation": "string-comparison"
+		},
+		{
+			"name": "test",
+			"command": "nope",
+			"ec_console": "nope",
+			"waiting_sec": 3,
+			"validation": "nope"
+		}
+	],
+
+	"validation": [
+		{
+			"name": "string-comparison",
+			"string": [
+				["PROJECT EXECUTION SUCCESSFUL", 1],
+				["PROJECT EXECUTION FAILED", 0]
+			]
+		}
+	]
+}

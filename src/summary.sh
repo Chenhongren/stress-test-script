@@ -14,7 +14,7 @@ func_summary() {
 	if [ "$ec_console_filename" != "" ]; then
 		$cmd_printf "  EC console file: $ec_console_filename\n"
 	fi
-	if [ $input_verify -eq 1 ]; then
+	if [ "$validation" != "nope" ]; then
 		if [ $is_pass -eq 1 ]; then
 			$cmd_printf "  Validation:  PASS\n"
 		elif [ $is_pass -eq 0 ]; then
